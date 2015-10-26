@@ -20,8 +20,19 @@ public class BabysitterTest {
         DateTime bedTime = new DateTime(2015, 10, 26, 22, 0);
 
         Babysitter babysitter = new Babysitter();
-        int pay = babysitter.calculatePay(start, end, bedTime);
+        long pay = babysitter.calculatePay(start, end, bedTime);
         assertEquals(12, pay);
+    }
+
+    @Test
+    public void testBabysitterMultipleHoursBeforeBedTime(){
+        DateTime start = new DateTime(2015, 10, 26, 17, 0);
+        DateTime end = new DateTime(2015, 10, 26, 22, 0);
+        DateTime bedTime = new DateTime(2015, 10, 26, 22, 0);
+
+        Babysitter babysitter = new Babysitter();
+        long pay = babysitter.calculatePay(start, end, bedTime);
+        assertEquals(60, pay);
     }
 
 }
