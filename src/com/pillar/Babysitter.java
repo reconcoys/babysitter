@@ -6,7 +6,20 @@ import org.joda.time.Duration;
 public class Babysitter {
 
     public long calculatePay(DateTime start, DateTime end, DateTime bedTime) {
-        Duration duration = new Duration(start, end);
-        return duration.getStandardHours() * 12;
+        DateTime midnight = (new DateTime(start.getYear(), start.getMonthOfYear(), start.getDayOfMonth(), 0, 0)).plusDays(1);
+        Duration beforeBedDuration = end.isAfter(bedTime) ? new Duration(start, bedTime) : new Duration(start, end);
+        Duration bedToMidnightDuration = new Duration(0);
+        if (end.isAfter(bedTime)) {
+            if (end.isAfter(midnight)) {
+                bedToMidnightDuration = new Duration(bedTime, midnight);
+            }
+            else {
+                bedToMidnightDuration = new Duration(bedTime, end);
+            }
+        }
+        long pay = beforeBedDuration.getStandardHours() * 12;
+        pay += bedToMidnightDuration.getStandardHours() * 8;
+
+        return pay;
     }
 }

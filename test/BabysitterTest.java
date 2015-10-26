@@ -35,4 +35,14 @@ public class BabysitterTest {
         assertEquals(60, pay);
     }
 
+    @Test
+    public void testBabysitterMultipleHoursIncludingBedTimeNotPastMidnight(){
+        DateTime start = new DateTime(2015, 10, 26, 17, 0);
+        DateTime end = new DateTime(2015, 10, 26, 23, 0);
+        DateTime bedTime = new DateTime(2015, 10, 26, 21, 0);
+
+        Babysitter babysitter = new Babysitter();
+        long pay = babysitter.calculatePay(start, end, bedTime);
+        assertEquals(64, pay);
+    }
 }
