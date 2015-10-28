@@ -10,6 +10,9 @@ public class Babysitter {
         if (start.getHourOfDay() < 17) {
             throw new Exception("Babysitter starts no earlier than 5pm");
         }
+        if (end.getHourOfDay() > 4 && end.getDayOfMonth() > start.getDayOfMonth()) {
+            throw new Exception("Babysitter leaves no later than 4am");
+        }
 
         DateTime midnight = (new DateTime(start.getYear(), start.getMonthOfYear(), start.getDayOfMonth(), 0, 0)).plusDays(1);
         Duration beforeBedDuration = end.isAfter(bedTime) ? new Duration(start, bedTime) : new Duration(start, end);

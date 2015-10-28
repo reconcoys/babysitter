@@ -72,4 +72,20 @@ public class BabysitterTest {
         }
         assertEquals("Babysitter starts no earlier than 5pm", exceptionMessage);
     }
+
+    @Test
+    public void testBabysitterLeaveAfter4AM(){
+        DateTime start = new DateTime(2015, 10, 26, 17, 0);
+        DateTime end = new DateTime(2015, 10, 27, 5, 0);
+        DateTime bedTime = new DateTime(2015, 10, 26, 21, 0);
+
+        Babysitter babysitter = new Babysitter();
+        String exceptionMessage = "";
+        try {
+            babysitter.calculatePay(start, end, bedTime);
+        } catch (Exception e) {
+            exceptionMessage = e.getMessage();
+        }
+        assertEquals("Babysitter leaves no later than 4am", exceptionMessage);
+    }
 }
