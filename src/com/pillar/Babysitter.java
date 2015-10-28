@@ -16,18 +16,17 @@ public class Babysitter {
         DateTime midnight = (new DateTime(start.getYear(), start.getMonthOfYear(), start.getDayOfMonth(), 0, 0)).plusDays(1);
         Duration bedToMidnightDuration = new Duration(0);
         Duration midnightToEndDuration = new Duration(0);
+        Duration beforeBedDuration = new Duration(start, end);
 
-        Duration beforeBedDuration = end.isAfter(bedTime) ? new Duration(start, bedTime) : new Duration(start, end);
         if (end.isAfter(bedTime)) {
+            beforeBedDuration = new Duration(start, bedTime);
             if (end.isAfter(midnight)) {
                 bedToMidnightDuration = new Duration(bedTime, midnight);
+                midnightToEndDuration = new Duration(midnight, end);
             }
             else {
                 bedToMidnightDuration = new Duration(bedTime, end);
             }
-        }
-        if (end.isAfter(midnight)) {
-            midnightToEndDuration = new Duration(midnight, end);
         }
 
         long pay = beforeBedDuration.getStandardHours() * START_TO_BED_PAY;
