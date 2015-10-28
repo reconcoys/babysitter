@@ -13,13 +13,14 @@ public class BabysitterTest {
     - gets paid $16/hour from midnight to end of job
     - gets paid for full hours (no fractional hours)*/
 
+    private Babysitter babysitter = new Babysitter();
+
     @Test
     public void testBabysitterOneHourBeforeBedTime() throws Exception {
         DateTime start = new DateTime(2015, 10, 26, 17, 0);
         DateTime end = new DateTime(2015, 10, 26, 18, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 22, 0);
 
-        Babysitter babysitter = new Babysitter();
         long pay = babysitter.calculatePay(start, end, bedTime);
         assertEquals(12, pay);
     }
@@ -30,7 +31,6 @@ public class BabysitterTest {
         DateTime end = new DateTime(2015, 10, 26, 22, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 22, 0);
 
-        Babysitter babysitter = new Babysitter();
         long pay = babysitter.calculatePay(start, end, bedTime);
         assertEquals(60, pay);
     }
@@ -41,7 +41,6 @@ public class BabysitterTest {
         DateTime end = new DateTime(2015, 10, 26, 23, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 21, 0);
 
-        Babysitter babysitter = new Babysitter();
         long pay = babysitter.calculatePay(start, end, bedTime);
         assertEquals(64, pay);
     }
@@ -52,7 +51,6 @@ public class BabysitterTest {
         DateTime end = new DateTime(2015, 10, 27, 2, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 21, 0);
 
-        Babysitter babysitter = new Babysitter();
         long pay = babysitter.calculatePay(start, end, bedTime);
         assertEquals(104, pay);
     }
@@ -63,7 +61,6 @@ public class BabysitterTest {
         DateTime end = new DateTime(2015, 10, 27, 2, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 21, 0);
 
-        Babysitter babysitter = new Babysitter();
         String exceptionMessage = "";
         try {
             babysitter.calculatePay(start, end, bedTime);
@@ -79,7 +76,6 @@ public class BabysitterTest {
         DateTime end = new DateTime(2015, 10, 27, 5, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 21, 0);
 
-        Babysitter babysitter = new Babysitter();
         String exceptionMessage = "";
         try {
             babysitter.calculatePay(start, end, bedTime);
@@ -95,7 +91,6 @@ public class BabysitterTest {
         DateTime end = new DateTime(2015, 10, 27, 2, 0);
         DateTime bedTime = new DateTime(2015, 10, 27, 1, 0);
 
-        Babysitter babysitter = new Babysitter();
         String exceptionMessage = "";
         try {
             babysitter.calculatePay(start, end, bedTime);
@@ -111,7 +106,6 @@ public class BabysitterTest {
         DateTime end = new DateTime(2015, 10, 27, 2, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 23, 0);
 
-        Babysitter babysitter = new Babysitter();
         String exceptionMessage = "";
         try {
             babysitter.calculatePay(start, end, bedTime);
@@ -127,7 +121,6 @@ public class BabysitterTest {
         DateTime end = new DateTime(2015, 10, 27, 2, 30);
         DateTime bedTime = new DateTime(2015, 10, 26, 23, 0);
 
-        Babysitter babysitter = new Babysitter();
         String exceptionMessage = "";
         try {
             babysitter.calculatePay(start, end, bedTime);
@@ -143,7 +136,6 @@ public class BabysitterTest {
         DateTime end = new DateTime(2015, 10, 27, 2, 00);
         DateTime bedTime = new DateTime(2015, 10, 26, 23, 20);
 
-        Babysitter babysitter = new Babysitter();
         String exceptionMessage = "";
         try {
             babysitter.calculatePay(start, end, bedTime);
