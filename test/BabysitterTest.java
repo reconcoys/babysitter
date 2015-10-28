@@ -14,7 +14,7 @@ public class BabysitterTest {
     - gets paid for full hours (no fractional hours)*/
 
     @Test
-    public void testBabysitterOneHourBeforeBedTime(){
+    public void testBabysitterOneHourBeforeBedTime() throws Exception {
         DateTime start = new DateTime(2015, 10, 26, 17, 0);
         DateTime end = new DateTime(2015, 10, 26, 18, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 22, 0);
@@ -25,7 +25,7 @@ public class BabysitterTest {
     }
 
     @Test
-    public void testBabysitterMultipleHoursBeforeBedTime(){
+    public void testBabysitterMultipleHoursBeforeBedTime() throws Exception {
         DateTime start = new DateTime(2015, 10, 26, 17, 0);
         DateTime end = new DateTime(2015, 10, 26, 22, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 22, 0);
@@ -36,7 +36,7 @@ public class BabysitterTest {
     }
 
     @Test
-    public void testBabysitterMultipleHoursIncludingBedTimeNotPastMidnight(){
+    public void testBabysitterMultipleHoursIncludingBedTimeNotPastMidnight() throws Exception {
         DateTime start = new DateTime(2015, 10, 26, 17, 0);
         DateTime end = new DateTime(2015, 10, 26, 23, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 21, 0);
@@ -47,7 +47,7 @@ public class BabysitterTest {
     }
 
     @Test
-    public void testBabysitterMultipleHoursPastMidnight(){
+    public void testBabysitterMultipleHoursPastMidnight() throws Exception {
         DateTime start = new DateTime(2015, 10, 26, 17, 0);
         DateTime end = new DateTime(2015, 10, 27, 2, 0);
         DateTime bedTime = new DateTime(2015, 10, 26, 21, 0);
@@ -55,5 +55,21 @@ public class BabysitterTest {
         Babysitter babysitter = new Babysitter();
         long pay = babysitter.calculatePay(start, end, bedTime);
         assertEquals(104, pay);
+    }
+
+    @Test
+    public void testBabysitterStartBefore5PM(){
+        DateTime start = new DateTime(2015, 10, 26, 16, 0);
+        DateTime end = new DateTime(2015, 10, 27, 2, 0);
+        DateTime bedTime = new DateTime(2015, 10, 26, 21, 0);
+
+        Babysitter babysitter = new Babysitter();
+        String exceptionMessage = "";
+        try {
+            babysitter.calculatePay(start, end, bedTime);
+        } catch (Exception e) {
+            exceptionMessage = e.getMessage();
+        }
+        assertEquals("Babysitter starts no earlier than 5pm", exceptionMessage);
     }
 }
