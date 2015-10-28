@@ -37,6 +37,15 @@ public class Babysitter {
     }
 
     private void validateInput(DateTime start, DateTime end, DateTime bedTime) throws Exception {
+        if (start.getMinuteOfHour() != 0) {
+            throw new Exception("Start must be at the start of an hour");
+        }
+        if (end.getMinuteOfHour() != 0) {
+            throw new Exception("End must be at the start of an hour");
+        }
+        if (bedTime.getMinuteOfHour() != 0) {
+            throw new Exception("Bedtime must be at the start of an hour");
+        }
         if (start.getHourOfDay() < 17) {
             throw new Exception("Babysitter starts no earlier than 5pm");
         }

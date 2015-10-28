@@ -104,4 +104,52 @@ public class BabysitterTest {
         }
         assertEquals("Bedtime must be before midnight", exceptionMessage);
     }
+
+    @Test
+    public void testBabysitterStartFractionalHour(){
+        DateTime start = new DateTime(2015, 10, 26, 17, 30);
+        DateTime end = new DateTime(2015, 10, 27, 2, 0);
+        DateTime bedTime = new DateTime(2015, 10, 26, 23, 0);
+
+        Babysitter babysitter = new Babysitter();
+        String exceptionMessage = "";
+        try {
+            babysitter.calculatePay(start, end, bedTime);
+        } catch (Exception e) {
+            exceptionMessage = e.getMessage();
+        }
+        assertEquals("Start must be at the start of an hour", exceptionMessage);
+    }
+
+    @Test
+    public void testBabysitterEndFractionalHour(){
+        DateTime start = new DateTime(2015, 10, 26, 17, 00);
+        DateTime end = new DateTime(2015, 10, 27, 2, 30);
+        DateTime bedTime = new DateTime(2015, 10, 26, 23, 0);
+
+        Babysitter babysitter = new Babysitter();
+        String exceptionMessage = "";
+        try {
+            babysitter.calculatePay(start, end, bedTime);
+        } catch (Exception e) {
+            exceptionMessage = e.getMessage();
+        }
+        assertEquals("End must be at the start of an hour", exceptionMessage);
+    }
+
+    @Test
+    public void testBabysitterBedTimeFractionalHour(){
+        DateTime start = new DateTime(2015, 10, 26, 17, 00);
+        DateTime end = new DateTime(2015, 10, 27, 2, 00);
+        DateTime bedTime = new DateTime(2015, 10, 26, 23, 20);
+
+        Babysitter babysitter = new Babysitter();
+        String exceptionMessage = "";
+        try {
+            babysitter.calculatePay(start, end, bedTime);
+        } catch (Exception e) {
+            exceptionMessage = e.getMessage();
+        }
+        assertEquals("Bedtime must be at the start of an hour", exceptionMessage);
+    }
 }
